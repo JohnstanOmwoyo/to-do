@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Task List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #54c160;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 10px;
+        border: 1px solid #333;
+      }
+      th {
+        background-color: #333;
+        color: #f8f4f4;
+        text-align: left;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Task List</h1>
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Priority</th>
+          <th>Completed</th>
+          <th>Actions</th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+          <td>{{ task.title }}</td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.priority }}</td>
+          <td>{{ task.completed }}</td>
+          <td>
+            <a href="{% url 'update_task' task.id %}">Update</a> 
+            <a href="{% url 'delete_task' task.id %}">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <table>
+        <h1>Unassigned Tasks</h1>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Priority</th>
+            <th>Completed</th>
+            <th>Actions</th>
+          </tr>
+          {% for task in unassigned_tasks %}
+          <tr>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.priority }}</td>
+            <td>{{ task.completed }}</td>
+            
+            <td>
+              <a href="{% url 'update_task' task.id %}">Update</a> --
+              <a href="{% url 'delete_task' task.id %}">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+    </table>
+</div>
+  </body>
+</html>
