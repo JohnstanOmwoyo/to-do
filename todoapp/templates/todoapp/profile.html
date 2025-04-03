@@ -1,0 +1,9 @@
+{% extends 'todoapp/base.html' %}
+
+{% block content %}
+    <h1>Profile</h1>
+    <p>Welcome, {{ user.username }}</p>
+    <a href="{% url 'task_list' %}"><button>View Tasks</button></a>
+    <a href="{% url 'logout' %}"><button>Logout</button></a>
+{% endblock %}
+

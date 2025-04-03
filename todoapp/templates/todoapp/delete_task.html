@@ -1,9 +1,11 @@
 {% extends 'todoapp/base.html' %}
+
 {% block content %}
-<h2>Are you sure you want to delete "{{ task.title }}"?</h2>
+<h1>Delete Task</h1>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Yes, Delete</button>
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input type="submit" value="Confirm">
+    <a href="{% url 'task_list' %}"><button>Cancel</button></a>
 </form>
-<a href="{% url 'task_list' %}">Cancel</a>
 {% endblock %}
